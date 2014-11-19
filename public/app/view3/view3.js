@@ -16,6 +16,9 @@ angular.module('myAppRename.view3', ['ngRoute'])
     }).
       success(function (data, status, headers, config) {
         $scope.wikis = data;
+        $scope.search = function(searchText){
+          console.log(searchText);
+          }
       }).
       error(function (data, status, headers, config) {
         $scope.error = data;
