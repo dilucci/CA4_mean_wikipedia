@@ -9,22 +9,22 @@ describe('myAppRename.view3 View3Ctrl', function() {
 
   beforeEach(inject(function ($httpBackend, $rootScope, $controller) {
     httpBackendMock = $httpBackend;
-    httpBackendMock.expectGET('api/user').
+    httpBackendMock.expectGET('api/wiki').
       respond(users);
     scope = $rootScope.$new();
     ctrl = $controller('View3Ctrl', {$scope: scope});
   }));
 
   it('Should fetch two names ', function () {
-    expect(scope.users).toBeUndefined();
+    expect(scope.wikis).toBeUndefined();
     httpBackendMock.flush();
-    expect(scope.users.length).toEqual(2);
+    expect(scope.wikis.length).toEqual(2);
   });
 
   it('Should fetch Lars and Henrik', function () {
-    expect(scope.users).toBeUndefined();
+    expect(scope.wikis).toBeUndefined();
     httpBackendMock.flush();
-    expect(JSON.stringify(scope.users)).toEqual(JSON.stringify(users));
+    expect(JSON.stringify(scope.wikis)).toEqual(JSON.stringify(users));
   });
 
 });

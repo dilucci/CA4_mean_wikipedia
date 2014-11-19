@@ -8,7 +8,7 @@ var testServer;
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
 
-describe('REST API for /user', function () {
+describe('REST API for /wiki', function () {
   //Start the Server before the TESTS
   before(function (done) {
     testServer = app.listen(testPort, function () {
@@ -36,8 +36,8 @@ describe('REST API for /user', function () {
     testServer.close();
   })
 
-  it("Should get 2 users; Lars and Henrik", function (done) {
-    http.get("http://localhost:"+testPort+"/api/user",function(res){
+  it("Should get 2 wikis; Lars and Henrik", function (done) {
+    http.get("http://localhost:"+testPort+"/api/wiki",function(res){
       res.setEncoding("utf8");//response data is now a string
       res.on("data",function(chunk){
         var n = JSON.parse(chunk);
