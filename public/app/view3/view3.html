@@ -7,5 +7,8 @@
   <input type="search" ng-model="searchText">
   <button class="btn btn-default" type="submit" ng-click="search()">Search</button>
   <ul>
-    <li ng-repeat="wiki in wikis | filter: searchText"> {{wiki.title}}</li>
+    <li ng-repeat="wiki in wikis | filter: searchText"><a ng-mouseover="abstract" ng-mouseout="!abstract">{{wiki.title}}</a>
+      <div ng-show="abstract">{{wiki.abstract}}</div>
+    </li>
+
   </ul>

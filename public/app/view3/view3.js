@@ -11,6 +11,7 @@ angular.module('myAppRename.view3', ['ngRoute'])
 
 .controller('View3Ctrl', function ($scope, $http) {
     $scope.searchText = "";
+    $scope.abstract = false;
 
     $scope.search = function(){
       $http({
