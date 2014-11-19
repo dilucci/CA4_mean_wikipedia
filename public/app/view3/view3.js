@@ -10,15 +10,27 @@ angular.module('myAppRename.view3', ['ngRoute'])
 }])
 
 .controller('View3Ctrl', function ($scope, $http) {
+    $scope.searchText = "";
+
+    $scope.search = function(){
+      $http({
+        method: 'GET',
+        url: 'api/wiki/' + $scope.searchText
+      }).
+          success(function (data, status, headers, config) {
+            $scope.wikis = data;
+          }).
+          error(function (data, status, headers, config) {
+            $scope.error = data;
+          });
+    };
+
     $http({
       method: 'GET',
       url: 'api/wiki'
     }).
       success(function (data, status, headers, config) {
         $scope.wikis = data;
-        $scope.search = function(searchText){
-          console.log(searchText);
-          }
       }).
       error(function (data, status, headers, config) {
         $scope.error = data;
