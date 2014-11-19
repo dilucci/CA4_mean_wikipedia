@@ -4,8 +4,6 @@ var dbHandler = require('../model/dbHandler');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  console.log("hej");
-  dbHandler.getWiki("asdasd");
   res.redirect("app/index.html")
 });
 

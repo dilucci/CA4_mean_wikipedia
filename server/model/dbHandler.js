@@ -9,9 +9,11 @@ module.exports.getWiki = function(title, callback) {
     });
 };
 
-module.exports.findWiki = function(searchString) {
-    model.WikiModel.find(function (error, wikis) {
-        return wikis;
+module.exports.findWiki = function(searchString, callback) {
+    console.log('hej i findWiki');
+    wiki.find({title: {$regex: new RegExp(searchString, "i")} }, function (error, wikis) {
+        console.log(wikis);
+        callback(wikis);
     });
 };
 
