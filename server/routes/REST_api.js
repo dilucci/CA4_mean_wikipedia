@@ -35,4 +35,31 @@ router.get('/wiki/:searchString', function(req, res) {
   })
 });
 
+router.get('/wikicategories', function(req, res) {
+  if(typeof global.mongo_error !== "undefined"){
+    res.status(500);
+    res.end("Error: "+global.mongo_error+" To see a list of wikis here, make sure you have started the database and set up some test wikis (see model-->db.js for instructions)");
+    return;
+  }
+  dbHandler.getCategories(function(wikis) {
+    console.log(wikis);
+    res.header("Content-type","application/json");
+    res.end(JSON.stringify(wikis));
+  })
+});
+
+router.get('/wikicategories/:category', function(req, res) {
+  var category = req.params.category;
+  if(typeof global.mongo_error !== "undefined"){
+    res.status(500);
+    res.end("Error: "+global.mongo_error+" To see a list of wikis here, make sure you have started the database and set up some test wikis (see model-->db.js for instructions)");
+    return;
+  }
+  dbHandler.getWikisWithCategory(category, function(wikis) {
+    console.log(wikis);
+    res.header("Content-type","application/json");
+    res.end(JSON.stringify(wikis));
+  })
+});
+
 module.exports = router;

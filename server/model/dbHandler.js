@@ -17,14 +17,16 @@ module.exports.findWiki = function(searchString, callback) {
     });
 };
 
-module.exports.getCategories = function() {
-    model.WikiModel.find(function (error, wikis) {
-        return wikis;
+module.exports.getCategories = function(callback) {
+    console.log('hej i getCat');
+    wiki.distinct("categories", function(error, wikis) {
+        console.log(wikis);
+        callback(wikis);
     });
 };
 
-module.exports.getWikisWithCategory = function(category) {
-    model.WikiModel.find(function (error, wikis) {
-        return wikis;
+module.exports.getWikisWithCategory = function(category, callback) {
+    wiki.find({categories: category}, function (error, wikis) {
+        callback(wikis);
     });
 };
