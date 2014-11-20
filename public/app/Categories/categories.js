@@ -8,7 +8,7 @@ angular.module('myAppRename.categories', ['ngRoute'])
         });
     }])
     .run(['$anchorScroll', function($anchorScroll) {
-        $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
+        $anchorScroll.yOffset = 500;   // always scroll by 50 extra pixels
     }])
     .controller('headerCtrl', ['$anchorScroll', '$location', '$scope', '$http',
         function ($anchorScroll, $location, $scope, $http) {
@@ -24,23 +24,22 @@ angular.module('myAppRename.categories', ['ngRoute'])
                     $scope.error = data;
                 });
 
-            //$scope.gotoAnchor = function(x) {
-            //        $location.hash('anchorb');
-            //        $anchorScroll();
-            //};
-
             $scope.gotoAnchor = function(x) {
                 console.log("i gotoAnchor: " + x)
                 var newHash = 'anchor' + x;
+                var result;
 
                 for(var i = 0; i < $scope.categories.length; i++) {
-                    if($scope.categories[i] && $scope.categories[i].charAt(0) === x) {
-                        $location.hash('anchor' + $scope.categories[i])
+                    if($scope.categories[i] && $scope.categories[i].charAt(0).toLowerCase() === x) {
+                        //$scope.categories[i].anchor = x;
+                        console.log("1st" + $scope.categories[i]);
+                        $location.hash('anchor' + $scope.categories[i]);
+                        result = 'anchor' + $scope.categories[i];
                         break;
                     }
-
                     //if($scope.categories[i].charAt(0).valueOf() - $scope.categories[i+1].charAt(0).valueOf() === 1)
                 }
+                console.log(result);
                 $anchorScroll();
 
 
