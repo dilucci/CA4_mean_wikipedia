@@ -11,14 +11,17 @@
                     {{x}}
                 </a>
             </div>
-            <div id="anchor{{x}}" class="anchor" ng-repeat="wiki in wikis">
-                <!--Anchor {{category}} of {{category}}-->
-            </div>
+            <!--<div id="anchor{{x}}" class="anchor" ng-repeat="wiki in wikis">-->
+                <!--&lt;!&ndash;Anchor {{category}} of {{category}}&ndash;&gt;-->
+            <!--</div>-->
             <ul>
                 <li ng-repeat="category in categories"><a ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">{{category}}</a>
-                    <div ng-show="abstract">{{wiki.abstract}}</div>
+                    <!--<div id="anchor{{x}}" class="anchor" ng-repeat="x in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']"></div>-->
+                    <!--<div ng-show="abstract">{{wiki.abstract}}</div>-->
+                    <!--<div ng-show="abstract">{{wiki.abstract}}</div>-->
                 </li>
 
             </ul>
+        <div id="anchor{{b}}" class="anchor"></div>
     </body>
 </html>

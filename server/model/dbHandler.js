@@ -25,7 +25,7 @@ module.exports.getCategories = function(callback) {
                 return a.toLowerCase().localeCompare(b.toLowerCase());
             }
         });
-        console.log(categories);
+        //console.log(categories);
         callback(categories);
     });
 };

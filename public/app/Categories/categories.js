@@ -10,7 +10,7 @@ angular.module('myAppRename.categories', ['ngRoute'])
     .run(['$anchorScroll', function($anchorScroll) {
         $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
     }])
-    .controller('headerCtrl', ['$anchorScroll', '$location', '$scope',
+    .controller('headerCtrl', ['$anchorScroll', '$location', '$scope', '$http',
         function ($anchorScroll, $location, $scope, $http) {
             $scope.gotoAnchor = function(x) {
                 var newHash = 'anchor' + x;
