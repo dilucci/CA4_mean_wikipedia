@@ -1,3 +1,4 @@
+'use strict';
 
 angular.module('myAppRename.categories', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
@@ -10,7 +11,7 @@ angular.module('myAppRename.categories', ['ngRoute'])
         $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
     }])
     .controller('headerCtrl', ['$anchorScroll', '$location', '$scope',
-        function ($anchorScroll, $location, $scope) {
+        function ($anchorScroll, $location, $scope, $http) {
             $scope.gotoAnchor = function(x) {
                 var newHash = 'anchor' + x;
                 if ($location.hash() !== newHash) {
@@ -23,5 +24,16 @@ angular.module('myAppRename.categories', ['ngRoute'])
                     $anchorScroll();
                 }
             };
+
+            $http({
+                method: 'GET',
+                url: 'api/wikicategories'
+            }).
+                success(function (data, status, headers, config) {
+                    $scope.categories = data;
+                }).
+                error(function (data, status, headers, config) {
+                    $scope.error = data;
+                });
         }
     ]);

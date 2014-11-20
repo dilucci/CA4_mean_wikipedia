@@ -19,9 +19,14 @@ module.exports.findWiki = function(searchString, callback) {
 
 module.exports.getCategories = function(callback) {
     console.log('hej i getCat');
-    wiki.distinct("categories", function(error, wikis) {
-        console.log(wikis);
-        callback(wikis);
+    wiki.distinct("categories", function(error, categories) {
+        categories.sort(function(a, b) {
+            if(a && b) {
+                return a.toLowerCase().localeCompare(b.toLowerCase());
+            }
+        });
+        console.log(categories);
+        callback(categories);
     });
 };
 
