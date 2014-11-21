@@ -8,8 +8,8 @@ angular.module('myAppRename', [
   'myAppRename.services',
   'myAppRename.factories',
   'myAppRename.filters',
+  'myAppRename.categories',
   'myAppRename.view3',
-  'myAppRename.categories'
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/view3'});
