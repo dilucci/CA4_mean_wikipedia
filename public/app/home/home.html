@@ -1,0 +1,41 @@
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gruppe 4 CA 4 mean wiki</title>
+</head>
+<body>
+    <h3>Funktionalitet:</h3>
+    <p>
+        I dette KA skulle vi lave en MEAN stack, som er Mongodb, Express, Angular og Node.
+        Vi har en database på mongolab, som har en masse wikipedia udkast med titler, kategorier og andre ting.
+        Ved at bruge Express og Angular har vi lavet routing, så vi har et interface med 4 metoder:
+        <ul>
+            <li>getWiki(title) - som returnerer wikis med den søgte titel.</li>
+            <li>findWiki(searchString) - som returnerer wikis med de søgte bogstaver/string.</li>
+                Denne bruges på vores frontend ved at vise en liste af titler, med tilhørende abstracts, som vises hvis man hover over titlerne med cursoren.
+            <li>getCategories() - her returneres der alle distinct kategorier.</li>
+                Bruges i frontend, som hvis du trygger på en kategori, så viser den hvilke titler der er under kategorien. (denne blev vi dog ikke helt færdig med)
+            <li>getWikisWithCategory(category) - returnerer wikis med den valgte kategori og bruges i ovenstående.</li>
+        </ul>
+    </p>
+
+    <h3>Backend Test:</h3>
+    <p>
+        I backend tester vi metoderne ovenfor. Vi har lavet en testdatabase med nogle mock-wikis.
+        Vi benytter os af mocha og should til at teste metoderne. Dette gøres ved at bruge "it" og "http.get", som refererer til vores homepage og den pågældende routing.
+        Der sørges for at få den rigtige mængde data ud og at dataerne stemmer overens.
+    </p>
+    <h3>Frontend Test:</h3>
+    <p>
+        Frontend tests er lavet med Karma, men vi blev desværre ikke helt færdige (se sidste afsnit).
+    </p>
+    <h3>Hvem gjorde hvad?</h3>
+    <p>
+        Vi har arbejdet over teamviewer det meste af tiden, så alle har været med til at kode det samme. I praksis betyder det, at én person styrer og udfører/skriver det de inputs de andre kommer med.
+
+    </p>
+    <h3>Efterord</h3>
+    <p>
+        Vi har desværre været hårdt ramt af sygdom i dette KA. Tre af fire fra gruppen har været syge det meste af ugen, hvilket er gået hårdt udover vores KA. Vi har derfor slet ikke nået, hvad vi gerne ville, både i omfang og kvalitet/design.
+    </p>
+    <a href="https://github.com/foosah/CA4_mean_wikipedia.git">Github</a>
+</body>
