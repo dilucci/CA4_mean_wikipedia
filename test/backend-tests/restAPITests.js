@@ -6,27 +6,26 @@ var http = require("http");
 var testPort = 9999;
 var testServer;
 var mongoose = require("mongoose");
-var User = mongoose.model("User");
+var wiki = mongoose.model("wiki");
+var testDatabase = require('./wikiTestDatabase');
+//var mock = require("angular-mocks");
 
 describe('REST API for /wiki', function () {
+
+
+
   //Start the Server before the TESTS
   before(function (done) {
+
     testServer = app.listen(testPort, function () {
       console.log("Server is listening on: " + testPort);
-      done();
     })
     .on('error',function(err){
         console.log(err);
       });
-  })
 
-  beforeEach(function(done){
-    User.remove({}, function ()
-    {
-      var array = [{userName : "Lars", email :"lars@a.dk",pw: "xxx"},{userName : "Henrik", email :"henrik@a.dk",pw: "xxx"}];
-      User.create(array,function(err){
-        done();
-      });
+    testDatabase.populateDatabase(function() {
+      done();
     });
   })
 
@@ -36,14 +35,52 @@ describe('REST API for /wiki', function () {
     testServer.close();
   })
 
-  it("Should get 2 wikis; Lars and Henrik", function (done) {
-    http.get("http://localhost:"+testPort+"/api/wiki",function(res){
+  it("Should get 1 wiki with title Jeppe K", function (done) {
+    http.get("http://localhost:"+testPort+"/api/wiki/Jeppe K",function(res){
       res.setEncoding("utf8");//response data is now a string
       res.on("data",function(chunk){
-        var n = JSON.parse(chunk);
-        n.length.should.equal(2);
-        n[0].userName.should.equal("Lars");
-        n[1].userName.should.equal("Henrik");
+        var wikis = JSON.parse(chunk);
+        wikis.length.should.equal(1);
+        wikis[0].title.should.equal("Jeppe K");
+        done();
+      });
+    })
+  });
+
+  it("Should get 1 wiki with category Games; League of Legends", function (done) {
+    http.get("http://localhost:"+testPort+"/api/wikicategories/Games",function(res){
+      res.setEncoding("utf8");//response data is now a string
+      res.on("data",function(chunk){
+        var wikis = JSON.parse(chunk);
+        wikis.length.should.equal(1);
+        wikis[0].title.should.equal("League of Legends");
+        done();
+      });
+    })
+  });
+
+  it("Should get all distinct categories (3); Ejendomsmægler, Games, Moba", function (done) {
+    http.get("http://localhost:"+testPort+"/api/wikicategories",function(res){
+      res.setEncoding("utf8");//response data is now a string
+      res.on("data",function(chunk){
+        var categories = JSON.parse(chunk);
+        categories.length.should.equal(3);
+        categories[0].should.equal("Ejendomsmægler");
+        categories[1].should.equal("Games");
+        categories[2].should.equal("Moba");
+        done();
+      });
+    })
+  });
+
+  it("Should get 2 wikis; Jeppe K, League of Legends", function (done) {
+    http.get("http://localhost:"+testPort+"/api/wiki/e",function(res){
+      res.setEncoding("utf8");//response data is now a string
+      res.on("data",function(chunk){
+        var wikis = JSON.parse(chunk);
+        wikis.length.should.equal(2);
+        wikis[0].title.should.equal("Jeppe K");
+        wikis[1].title.should.equal("League of Legends");
         done();
       });
     })
