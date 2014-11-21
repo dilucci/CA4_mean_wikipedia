@@ -9,14 +9,14 @@ var wiki = mongoose.model('wiki');
 
 router.get('/wiki/:searchString', function(req, res) {
   var searchString = req.params.searchString;
-  console.log("searchString: " + searchString);
+  /*console.log("searchString: " + searchString);*/
   if(typeof global.mongo_error !== "undefined"){
     res.status(500);
     res.end("Error: "+global.mongo_error+" To see a list of wikis here, make sure you have started the database and set up some test wikis (see model-->db.js for instructions)");
     return;
   }
   dbHandler.findWiki(searchString.toLowerCase(), function(wikis) {
-    console.log(wikis);
+    /*console.log(wikis);*/
     res.header("Content-type","application/json");
     res.end(JSON.stringify(wikis));
   })
@@ -42,7 +42,7 @@ router.get('/wikicategories/:category', function(req, res) {
     return;
   }
   dbHandler.getWikisWithCategory(category, function(wikis) {
-    console.log(wikis);
+    /*console.log(wikis);*/
     res.header("Content-type","application/json");
     res.end(JSON.stringify(wikis));
   })
@@ -58,7 +58,7 @@ router.get('/:wiki', function(req, res) {
   }
 
   dbHandler.getWiki(wiki, function(wikis) {
-    console.log("List of wikis: " + wikis);
+   /* console.log("List of wikis: " + wikis);*/
     res.header("Content-type","application/json");
     res.end(JSON.stringify(wikis));
   })

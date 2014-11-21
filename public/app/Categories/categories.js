@@ -12,7 +12,6 @@ angular.module('myAppRename.categories', ['ngRoute'])
     }])
     .controller('headerCtrl', ['$anchorScroll', '$location', '$scope', '$http',
         function ($anchorScroll, $location, $scope, $http) {
-
             $http({
                 method: 'GET',
                 url: 'api/wikicategories'
@@ -23,6 +22,19 @@ angular.module('myAppRename.categories', ['ngRoute'])
                 error(function (data, status, headers, config) {
                     $scope.error = data;
                 });
+
+                $scope.getWikisWithCategory = function(category){
+                $http({
+                    method: 'GET',
+                    url: 'api/wikicategories/' + category
+                }).
+                    success(function (data, status, headers, config) {
+                        $scope.wikis = data;
+                    }).
+                    error(function (data, status, headers, config) {
+                        $scope.error = data;
+                    });
+            };
 
             $scope.gotoAnchor = function(x) {
                 console.log("i gotoAnchor: " + x)
@@ -37,30 +49,9 @@ angular.module('myAppRename.categories', ['ngRoute'])
                         result = 'anchor' + $scope.categories[i];
                         break;
                     }
-                    //if($scope.categories[i].charAt(0).valueOf() - $scope.categories[i+1].charAt(0).valueOf() === 1)
                 }
                 console.log(result);
                 $anchorScroll();
-
-
-                //$scope.categories.forEach(function(category) {
-                //
-                //})
-
-                //if ($location.hash() !== newHash) {
-                //    // set the $location.hash to `newHash` and
-                //    // $anchorScroll will automatically scroll to it
-                //    $location.hash('anchor' + x);
-                //} else {
-                //    // call $anchorScroll() explicitly,
-                //    // since $location.hash hasn't changed
-                //    $anchorScroll();
-                //}
             };
-
-            //$scope.anchorPlacement = function(category) {
-            //
-            //}
-
         }
     ]);
