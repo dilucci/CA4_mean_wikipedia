@@ -12,6 +12,7 @@ angular.module('myAppRename.categories', ['ngRoute'])
     }])
     .controller('headerCtrl', ['$anchorScroll', '$location', '$scope', '$http',
         function ($anchorScroll, $location, $scope, $http) {
+          /*  $scope.title = false;*/
             $http({
                 method: 'GET',
                 url: 'api/wikicategories'
@@ -30,6 +31,7 @@ angular.module('myAppRename.categories', ['ngRoute'])
                 }).
                     success(function (data, status, headers, config) {
                         $scope.wikis = data;
+                        /*this.title = true;*/
                     }).
                     error(function (data, status, headers, config) {
                         $scope.error = data;

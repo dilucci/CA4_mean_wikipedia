@@ -7,13 +7,11 @@
 
             <ul>
                 <li class="anchor" ng-repeat="category in categories" id="anchor{{category}}">
-                    <a href="" onclick="getWikisWithCategory(category)">{{category}}</a>
-                    <div ng-show="title">
-                        <li ng-repeat="wiki in wikis">{{wiki.title}}</li>
-                    </div>
+                  <a href="" ng-click="getWikisWithCategory(category)">{{category}}
 
+                        <ul ng-repeat="wiki in wikis">
+                            <li ng-show="title">{{wiki.title}}</li>
+                        </ul></a>
                 </li>
-
-
             </ul>
         <div id="anchorb" class="anchor"></div>

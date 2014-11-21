@@ -42,7 +42,7 @@ router.get('/wikicategories/:category', function(req, res) {
     return;
   }
   dbHandler.getWikisWithCategory(category, function(wikis) {
-    /*console.log(wikis);*/
+    console.log(wikis);
     res.header("Content-type","application/json");
     res.end(JSON.stringify(wikis));
   })
